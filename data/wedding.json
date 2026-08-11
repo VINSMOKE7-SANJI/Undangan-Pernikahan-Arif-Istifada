@@ -1,7 +1,7 @@
 {
   "meta": {
-    "siteTitle": "Undangan Pernikahan Fadli & Aisyah",
-    "coupleShort": "Fadli & Aisyah",
+    "siteTitle": "Undangan Pernikahan Arifiansyah & Isda",
+    "coupleShort": "Arifiansyah & Isda",
     "defaultGuestName": "Bapak/Ibu/Saudara/i",
     "openingLine": "Kepada Yth.",
     "openingNote": "Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di acara pernikahan kami",
@@ -11,26 +11,26 @@
       "brand": "Undangan Digital",
       "ctaText": "Ingin undangan seperti ini? Chat via WhatsApp",
       "waNumber": "6281246211461",
-      "waMessage": "Assalamu'alaikum, saya tertarik membuat undangan pernikahan online seperti undangan Fadli & Aisyah. Bisa dibantu?"
+      "waMessage": "Assalamu'alaikum, saya tertarik membuat undangan pernikahan online seperti undangan Arifiansyah & Isda. Bisa dibantu?"
     }
   },
 
   "groom": {
-    "name": "Fadli",
-    "fullName": "Muhammad Fadli Ramadhan",
+    "name": "Arifiansyah",
+    "fullName": "Muhammad Arifiansyah Ramadhan",
     "father": "Bapak H. Ahmad Suryadi",
     "mother": "Ibu Hj. Ratna Wulandari",
     "childOrder": "Putra pertama dari",
-    "instagram": "@fadli.ramadhan",
+    "instagram": "@Arifiansyah.ramadhan",
     "photo": "assets/images/groom.jpg"
   },
   "bride": {
-    "name": "Aisyah",
-    "fullName": "Aisyah Putri Lestari",
+    "name": "Isda",
+    "fullName": "Isda Putri Lestari",
     "father": "Bapak H. Syamsuddin",
     "mother": "Ibu Hj. Nurhayati",
     "childOrder": "Putri kedua dari",
-    "instagram": "@aisyah.putri",
+    "instagram": "@Isda.putri",
     "photo": "assets/images/bride.jpg"
   },
 
@@ -87,14 +87,14 @@
   "liveStream": {
     "url": "",
     "platform": "YouTube",
-    "note": "Tautan live streaming akan tersedia menjelang hari-H."
+    "note": "https://www.rctiplus.com/tv/rcti"
   },
 
   "gift": {
     "intro": "Doa restu Anda adalah karunia yang paling berarti bagi kami. Namun jika ingin memberi tanda kasih, kami menyediakan amplop digital berikut.",
     "banks": [
-      { "bank": "BNI", "number": "1234567890", "holder": "a.n Muhammad Fadli Ramadhan" },
-      { "bank": "Mandiri", "number": "0987654321", "holder": "a.n Aisyah Putri Lestari" }
+      { "bank": "BNI", "number": "1234567890", "holder": "a.n Muhammad Arifiansyah Ramadhan" },
+      { "bank": "Mandiri", "number": "0987654321", "holder": "a.n Isda Putri Lestari" }
     ]
   },
 
