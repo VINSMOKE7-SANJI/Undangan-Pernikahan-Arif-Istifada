@@ -1,7 +1,7 @@
 {
   "meta": {
-    "siteTitle": "Undangan Pernikahan Arifiansyah & Isda",
-    "coupleShort": "Arifiansyah & Isda",
+    "siteTitle": "Undangan Pernikahan Arifiansyah & Istifadah",
+    "coupleShort": "Arif & Isda",
     "defaultGuestName": "Bapak/Ibu/Saudara/i",
     "openingLine": "Kepada Yth.",
     "openingNote": "Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di acara pernikahan kami",
@@ -11,38 +11,34 @@
       "brand": "Undangan Digital",
       "ctaText": "Ingin undangan seperti ini? Chat via WhatsApp",
       "waNumber": "6281246211461",
-      "waMessage": "Assalamu'alaikum, saya tertarik membuat undangan pernikahan online seperti undangan Arifiansyah & Isda. Bisa dibantu?"
+      "waMessage": "Assalamu'alaikum, saya tertarik membuat undangan pernikahan online seperti undangan Arif & Isda. Bisa dibantu?"
     }
   },
-
   "groom": {
-    "name": "Arifiansyah",
-    "fullName": "Muhammad Arifiansyah Ramadhan",
+    "name": "Arif",
+    "fullName": "Arifiansyah",
     "father": "Bapak H. Ahmad Suryadi",
     "mother": "Ibu Hj. Ratna Wulandari",
     "childOrder": "Putra pertama dari",
-    "instagram": "@Arifiansyah.ramadhan",
+    "instagram": "@arifiansyah",
     "photo": "assets/images/groom.jpg"
   },
   "bride": {
     "name": "Isda",
-    "fullName": "Isda Putri Lestari",
+    "fullName": "Istifadah",
     "father": "Bapak H. Syamsuddin",
     "mother": "Ibu Hj. Nurhayati",
     "childOrder": "Putri kedua dari",
-    "instagram": "@Isda.putri",
+    "instagram": "@istifadah",
     "photo": "assets/images/bride.jpg"
   },
-
   "coverPhoto": "assets/images/cover.jpg",
   "openingPhoto": "assets/images/opening-bg.jpg",
-
   "quote": {
     "arabic": "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوٓا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً",
     "translation": "Di antara tanda kebesaran-Nya, Dia ciptakan pasangan hidup dari diri kita sendiri, agar hati menjadi tenteram bersamanya, dan Dia tumbuhkan rasa cinta dan kasih sayang di antara keduanya.",
     "source": "QS. Ar-Rum: 21 (parafrase makna)"
   },
-
   "event": {
     "dateISO": "2026-09-20T08:00:00+08:00",
     "dateLabelLong": "Minggu, 20 September 2026",
@@ -64,40 +60,69 @@
       "mapsUrl": "https://maps.google.com/?q=Jl.+Veteran+Selatan+No.+45+Makassar"
     }
   },
-
   "loveStory": [
-    { "year": "2019", "title": "Awal Bertemu", "text": "Dipertemukan dalam sebuah kegiatan kajian di kampus, tanpa disangka menjadi awal kisah yang panjang.", "photo": "assets/images/gallery/01.jpg" },
-    { "year": "2021", "title": "Ta'aruf", "text": "Setelah saling mengenal lebih jauh melalui proses ta'aruf yang penuh kehati-hatian, kami mantap melangkah bersama.", "photo": "assets/images/gallery/05.jpg" },
-    { "year": "2025", "title": "Lamaran", "text": "Dengan restu kedua orang tua, lamaran dilaksanakan sebagai ikrar niat baik menuju jenjang yang lebih serius.", "photo": "assets/images/gallery/07.jpg" },
-    { "year": "2026", "title": "Menikah", "text": "Insyaa Allah, kami siap menyempurnakan separuh agama dan membangun rumah tangga yang sakinah, mawaddah, warahmah.", "photo": "assets/images/gallery/10.jpg" }
+    {
+      "year": "2019",
+      "title": "Awal Bertemu",
+      "text": "Dipertemukan dalam sebuah kegiatan kajian di kampus, tanpa disangka menjadi awal kisah yang panjang.",
+      "photo": "assets/images/gallery/01.jpg"
+    },
+    {
+      "year": "2021",
+      "title": "Ta'aruf",
+      "text": "Setelah saling mengenal lebih jauh melalui proses ta'aruf yang penuh kehati-hatian, kami mantap melangkah bersama.",
+      "photo": "assets/images/gallery/05.jpg"
+    },
+    {
+      "year": "2025",
+      "title": "Lamaran",
+      "text": "Dengan restu kedua orang tua, lamaran dilaksanakan sebagai ikrar niat baik menuju jenjang yang lebih serius.",
+      "photo": "assets/images/gallery/07.jpg"
+    },
+    {
+      "year": "2026",
+      "title": "Menikah",
+      "text": "Insyaa Allah, kami siap menyempurnakan separuh agama dan membangun rumah tangga yang sakinah, mawaddah, warahmah.",
+      "photo": "assets/images/gallery/10.jpg"
+    }
   ],
-
   "gallery": [
-    "assets/images/gallery/01.jpg","assets/images/gallery/02.jpg","assets/images/gallery/03.jpg","assets/images/gallery/04.jpg",
-    "assets/images/gallery/05.jpg","assets/images/gallery/06.jpg","assets/images/gallery/07.jpg","assets/images/gallery/08.jpg",
-    "assets/images/gallery/09.jpg","assets/images/gallery/10.jpg"
+    "assets/images/gallery/01.jpg",
+    "assets/images/gallery/02.jpg",
+    "assets/images/gallery/03.jpg",
+    "assets/images/gallery/04.jpg",
+    "assets/images/gallery/05.jpg",
+    "assets/images/gallery/06.jpg",
+    "assets/images/gallery/07.jpg",
+    "assets/images/gallery/08.jpg",
+    "assets/images/gallery/09.jpg",
+    "assets/images/gallery/10.jpg"
   ],
-
   "memoryVideo": {
     "src": "assets/video/kenangan.mp4",
     "poster": "assets/video/kenangan-poster.jpg",
     "caption": "Sepenggal kenangan perjalanan kami — video contoh, ganti dengan video kenangan asli kalian."
   },
-
   "liveStream": {
     "url": "",
     "platform": "YouTube",
-    "note": "https://www.rctiplus.com/tv/rcti"
+    "note": "Tautan live streaming akan tersedia menjelang hari-H."
   },
-
   "gift": {
     "intro": "Doa restu Anda adalah karunia yang paling berarti bagi kami. Namun jika ingin memberi tanda kasih, kami menyediakan amplop digital berikut.",
     "banks": [
-      { "bank": "BNI", "number": "1234567890", "holder": "a.n Muhammad Arifiansyah Ramadhan" },
-      { "bank": "Mandiri", "number": "0987654321", "holder": "a.n Isda Putri Lestari" }
+      {
+        "bank": "BNI",
+        "number": "1234567890",
+        "holder": "a.n Muhammad Fadli Ramadhan"
+      },
+      {
+        "bank": "Mandiri",
+        "number": "0987654321",
+        "holder": "a.n Aisyah Putri Lestari"
+      }
     ]
   },
-
   "closing": {
     "thanksTitle": "Terima Kasih",
     "thanksText": "Atas doa dan restu yang telah Bapak/Ibu/Saudara/i berikan, kami ucapkan Jazaakumullahu Khairan.",
