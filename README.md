@@ -1,4 +1,4 @@
-# Undangan Pernikahan Digital — Fadli & Aisyah (Tema Islami)
+# Undangan Pernikahan Digital — Arif & Isda (Tema Islami)
 
 Template "mesin" undangan: **satu template HTML**, semua isi undangan
 (nama, tanggal, lokasi, cerita, galeri, rekening) diambil dari
@@ -73,11 +73,23 @@ Edit **`data/wedding.json`** saja — tidak perlu menyentuh HTML/CSS/JS:
 - `memoryVideo.src` / `poster` / `caption` — video kenangan, kosongkan `src` untuk menyembunyikan section ini
 - `liveStream.url` — isi dengan link YouTube Live/Zoom/dll agar section Live Streaming muncul; biarkan kosong (`""`) untuk menyembunyikannya sepenuhnya
 
+## Fitur v4 (update terbaru)
+
+- **Nama mempelai diganti**: pria **Arifiansyah (Arif)**, wanita **Istifadah (Isda)** — sudah diterapkan ke seluruh bagian undangan (opening, hero, kartu mempelai, closing, footer WA, judul tab browser).
+- **Frame bunga sakura** (`assets/images/frame.jpg` yang kamu kirim) sekarang jadi latar dekoratif di **setiap halaman/section** setelah tombol "Buka Undangan" diklik — hero, ayat, mempelai, acara, kisah cinta, galeri, video, live streaming, wedding gift, ucapan, dan closing. Warna teks di seluruh section disesuaikan jadi tone emerald tua/emas agar tetap terbaca di atas warna krem frame.
+- **Konten diposisikan di tengah** tiap halaman (vertikal & horizontal) supaya pas mengisi area kosong di tengah bingkai — tiap section kini setinggi minimal 1 layar penuh dan kontennya center, jadi terasa seperti kartu undangan asli, bukan sekadar list.
+- **Kupu-kupu 3D melayang** di semua halaman (termasuk saat opening) — diambil dari video `Butterfly.mp4` yang kamu kirim, latar putihnya otomatis "hilang" pakai teknik CSS `mix-blend-mode`, lalu diberi animasi terbang melayang-layang dengan efek rotasi 3D (`rotateY`/`translateZ`) tanpa henti, sepanjang video di-loop.
+- **Efek slide tetap jalan dua arah**: animasi masuk tiap section sekarang replay setiap kali digeser ke atas maupun ke bawah (sebelumnya cuma sekali saat pertama muncul).
+- **Tombol navigasi (☰) kini melayang tetap (fixed)** di semua halaman setelah undangan dibuka — tidak lagi cuma muncul di halaman hero saja. Otomatis "mengalah" (sembunyi sebentar) saat panel menu terbuka supaya tidak tumpang tindih.
+- Latar 3D motion (bintang geometris + cahaya lembut melayang) tetap ada khusus di **layar pembuka** dan **halaman penutup ucapan terima kasih**, sesuai permintaan sebelumnya.
+
+> **Catatan teknis kupu-kupu:** video kupu-kupu ini murni pemrosesan video biasa (buang warna putih latar, ulang video, animasikan posisinya pakai CSS) — bukan AI generatif, jadi aman dipakai berulang di banyak tempat. Kalau nanti ingin efeknya lebih halus/besar/kecil, ukurannya diatur di `assets/css/style.css` bagian `.bf1/.bf2/.bf3`.
+
 ## Fitur v3 (update terbaru)
 
 - **Layar pembuka** memakai foto latar bunga (`assets/images/opening-bg.jpg`) yang kamu kirim. Warna teks disesuaikan jadi emerald tua/emas agar tetap terbaca di atas kartu krem, dengan animasi Ken Burns halus dan fade-up bertahap per elemen.
 - **Galeri** kini pakai foto pasangan dari `contoh_asset.jpg` yang kamu kirim — sudah dibuatkan **10 variasi crop & warna** (dekat, lebar, hangat, dingin, close-up masing-masing) agar terasa beragam, ditata dalam slider dua baris tanpa henti.
-- **Video Kenangan** (`assets/video/kenangan.mp4`, ~56 detik) — video montase Ken Burns dari foto yang sama, lengkap dengan judul "The Wedding Of Fadli & Aisyah" di awal dan nama+tanggal di akhir. **Penting:** ini bukan video asli/rekaman baru — ini slideshow bergerak dari foto contoh yang kamu berikan, bukan video yang dibuat AI dari wajah orang tersebut. Ganti file ini dengan video kenangan asli kalian sebelum undangan disebar.
+- **Video Kenangan** (`assets/video/kenangan.mp4`, ~56 detik) — video montase Ken Burns dari foto yang sama, lengkap dengan judul "The Wedding Of Arif & Isda" di awal dan nama+tanggal di akhir. **Penting:** ini bukan video asli/rekaman baru — ini slideshow bergerak dari foto contoh yang kamu berikan, bukan video yang dibuat AI dari wajah orang tersebut. Ganti file ini dengan video kenangan asli kalian sebelum undangan disebar.
 - **Live Streaming**: section baru yang otomatis **tersembunyi total** kalau `liveStream.url` di `wedding.json` masih kosong. Begitu diisi (link YouTube Live/Zoom/dll), section beserta link navigasinya langsung muncul, dan otomatis membuat embed jika linknya YouTube.
 - **Transisi antar-halaman ala slide**: tiap section pakai `scroll-snap` (halaman "menempel" saat digeser) plus animasi masuk 3D (fade + rotateX + scale) supaya terasa seperti pindah slide, bukan cuma scroll biasa.
 - **Efek parallax** halus pada foto hero saat digeser, plus hover tilt 3D di foto & video.
