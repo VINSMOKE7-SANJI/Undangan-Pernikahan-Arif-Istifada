@@ -52,6 +52,7 @@
     $("#op-greeting").textContent = data.meta.openingLine;
     $("#op-guest-name").textContent = guestName;
     document.title = `Undangan Pernikahan ${data.groom.name} & ${data.bride.name}`;
+    $("#nav-brand").textContent = `${data.groom.name} & ${data.bride.name}`;
 
     const openingImg = data.openingPhoto || data.coverPhoto;
     if (openingImg) {
@@ -63,9 +64,6 @@
     $("#hero-groom").textContent = data.groom.name;
     $("#hero-bride").textContent = data.bride.name;
     $("#hero-date").textContent = data.event.dateLabelLong;
-    if (data.coverPhoto) {
-      $("#hero").style.setProperty("--hero-img", `url('${data.coverPhoto}')`);
-    }
   }
 
   function renderQuote(data) {
@@ -330,9 +328,6 @@
     $("#closing-groom").textContent = data.groom.name;
     $("#closing-bride").textContent = data.bride.name;
     $("#closing-date").textContent = data.event.dateLabelLong;
-    if (data.closing.photo) {
-      $("#closing").style.setProperty("--closing-img", `url('${data.closing.photo}')`);
-    }
   }
 
   function renderFooterAd(data) {
@@ -358,23 +353,22 @@
     setInterval(tick, 1000);
   }
 
-  /* ---------------- SCROLL REVEAL ---------------- */
+  /* ---------------- SCROLL REVEAL (continuous, replays both ways) ---------------- */
   function initReveal() {
     const io = new IntersectionObserver((entries) => {
-      entries.forEach(en => { if (en.isIntersecting) en.target.classList.add("in"); });
+      entries.forEach(en => {
+        en.target.classList.toggle("in", en.isIntersecting);
+      });
     }, { threshold: 0.15 });
     $$(".reveal").forEach(el => io.observe(el));
 
     const staggerIO = new IntersectionObserver((entries) => {
       entries.forEach(en => {
-        if (en.isIntersecting) {
-          const items = $$(".stagger-item", en.target.closest(".couple-wrap") || document);
-          items.forEach((item, i) => {
-            item.style.transitionDelay = `${i * 0.15}s`;
-            item.classList.add("in");
-          });
-          staggerIO.unobserve(en.target);
-        }
+        const items = $$(".stagger-item", en.target.closest(".couple-wrap") || document);
+        items.forEach((item, i) => {
+          item.style.transitionDelay = en.isIntersecting ? `${i * 0.15}s` : "0s";
+          item.classList.toggle("in", en.isIntersecting);
+        });
       });
     }, { threshold: 0.2 });
     const coupleWrap = $(".couple-wrap");
@@ -386,6 +380,7 @@
     const btn = $("#btn-open");
     const opening = $("#opening");
     const audio = $("#bg-audio");
+    const navBtn = $("#btn-menu");
     if (data.meta.musicFile) audio.src = data.meta.musicFile;
 
     btn.addEventListener("click", () => {
@@ -393,7 +388,10 @@
       audio.play().then(() => {
         $("#music-toggle").classList.add("playing");
       }).catch(() => { /* autoplay blocked; user can tap the music icon */ });
-      setTimeout(() => { opening.style.display = "none"; }, 850);
+      setTimeout(() => {
+        opening.style.display = "none";
+        navBtn.classList.add("visible");
+      }, 850);
     });
   }
 
@@ -431,11 +429,13 @@
     function openNav() {
       drawer.classList.add("open");
       overlay.classList.add("open");
+      menuBtn.classList.add("tucked");
       menuBtn.setAttribute("aria-expanded", "true");
     }
     function closeNav() {
       drawer.classList.remove("open");
       overlay.classList.remove("open");
+      menuBtn.classList.remove("tucked");
       menuBtn.setAttribute("aria-expanded", "false");
     }
 
