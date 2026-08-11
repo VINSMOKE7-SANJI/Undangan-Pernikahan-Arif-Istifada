@@ -14,10 +14,32 @@
 </head>
 <body>
 
+<!-- =================== FLOATING BUTTERFLIES (all pages) =================== -->
+<div class="butterfly-layer" aria-hidden="true">
+  <video class="bf bf1" src="assets/video/butterflies.mp4" autoplay muted loop playsinline></video>
+  <video class="bf bf2" src="assets/video/butterflies.mp4" autoplay muted loop playsinline></video>
+  <video class="bf bf3" src="assets/video/butterflies.mp4" autoplay muted loop playsinline></video>
+</div>
+
+<!-- =================== PERSISTENT NAV BUTTON (visible on all pages after opening) =================== -->
+<button class="btn-menu-fixed" id="btn-menu" aria-label="Buka menu navigasi" aria-expanded="false">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+</button>
+
 <!-- =================== OPENING SCREEN =================== -->
 <div id="opening">
   <div class="opening-bg" id="opening-bg"></div>
   <div class="opening-overlay"></div>
+  <div class="motion-bg" aria-hidden="true">
+    <span class="glow g1"></span>
+    <span class="glow g2"></span>
+    <span class="glow g3"></span>
+    <span class="star a" style="width:34px;height:34px;top:12%;left:10%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2l2.2 6.8H21l-5.6 4.1 2.2 6.8L12 15.6l-5.6 4.1 2.2-6.8L3 8.8h6.8z"/></svg></span>
+    <span class="star b" style="width:22px;height:22px;top:22%;right:12%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2l2.2 6.8H21l-5.6 4.1 2.2 6.8L12 15.6l-5.6 4.1 2.2-6.8L3 8.8h6.8z"/></svg></span>
+    <span class="star c" style="width:44px;height:44px;bottom:16%;left:14%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2l2.2 6.8H21l-5.6 4.1 2.2 6.8L12 15.6l-5.6 4.1 2.2-6.8L3 8.8h6.8z"/></svg></span>
+    <span class="star a" style="width:18px;height:18px;bottom:28%;right:16%; animation-delay:-4s;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2l2.2 6.8H21l-5.6 4.1 2.2 6.8L12 15.6l-5.6 4.1 2.2-6.8L3 8.8h6.8z"/></svg></span>
+    <span class="star b" style="width:28px;height:28px;top:48%;left:6%; animation-delay:-7s;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2l2.2 6.8H21l-5.6 4.1 2.2 6.8L12 15.6l-5.6 4.1 2.2-6.8L3 8.8h6.8z"/></svg></span>
+  </div>
   <div class="opening-content">
     <div class="opening-top op-fade op-d1">
       <span>Undangan Pernikahan</span>
@@ -48,7 +70,7 @@
 <div class="nav-overlay" id="nav-overlay"></div>
 <nav class="nav-drawer" id="nav-drawer">
   <button class="nav-close" id="nav-close" aria-label="Tutup menu">&times;</button>
-  <div class="nav-brand">Fadli &amp; Aisyah</div>
+  <div class="nav-brand" id="nav-brand">Fadli &amp; Aisyah</div>
   <div class="nav-links">
     <a href="#hero" data-nav>Beranda</a>
     <a href="#section-couple" data-nav>Mempelai</a>
@@ -69,9 +91,6 @@
   <section id="hero">
     <div class="hero-topbar">
       <span></span>
-      <button id="btn-menu" aria-label="Buka menu navigasi">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-      </button>
     </div>
     <div class="hero-eyebrow">The Wedding Of</div>
     <h1 class="hero-names"><span id="hero-groom">Fadli</span> &amp; <span id="hero-bride">Aisyah</span></h1>
@@ -206,6 +225,15 @@
 
   <!-- ---------- CLOSING ---------- -->
   <section id="closing">
+    <div class="motion-bg" aria-hidden="true">
+      <span class="glow g1"></span>
+      <span class="glow g2"></span>
+      <span class="glow g3"></span>
+      <span class="star a" style="width:30px;height:30px;top:14%;left:12%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2l2.2 6.8H21l-5.6 4.1 2.2 6.8L12 15.6l-5.6 4.1 2.2-6.8L3 8.8h6.8z"/></svg></span>
+      <span class="star b" style="width:20px;height:20px;top:20%;right:14%; animation-delay:-3s;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2l2.2 6.8H21l-5.6 4.1 2.2 6.8L12 15.6l-5.6 4.1 2.2-6.8L3 8.8h6.8z"/></svg></span>
+      <span class="star c" style="width:40px;height:40px;bottom:18%;right:10%; animation-delay:-9s;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2l2.2 6.8H21l-5.6 4.1 2.2 6.8L12 15.6l-5.6 4.1 2.2-6.8L3 8.8h6.8z"/></svg></span>
+      <span class="star a" style="width:16px;height:16px;bottom:30%;left:16%; animation-delay:-5s;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2l2.2 6.8H21l-5.6 4.1 2.2 6.8L12 15.6l-5.6 4.1 2.2-6.8L3 8.8h6.8z"/></svg></span>
+    </div>
     <div class="closing-thanks">Terima Kasih</div>
     <p class="closing-text" id="closing-text"></p>
     <div class="closing-names"><span id="closing-groom">Fadli</span> &amp; <span id="closing-bride">Aisyah</span></div>
