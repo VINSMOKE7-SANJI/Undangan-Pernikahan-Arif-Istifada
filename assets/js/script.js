@@ -419,6 +419,12 @@
 
   /* ---------------- SCROLL REVEAL (continuous, replays both ways) ---------------- */
   function initReveal() {
+    // Alternate each section's entrance direction: left, right, left, right...
+    // for a distinctive "slide deck" feel without relying on native scroll-snap.
+    $$(".reveal").forEach((el, i) => {
+      el.classList.add(i % 2 === 0 ? "slide-left" : "slide-right");
+    });
+
     // rootMargin creates a stable inner "trigger zone" well within the viewport,
     // so the transform animation on .reveal (which shifts its own bounding box)
     // can't re-cross the observer boundary mid-transition and cause jitter.
