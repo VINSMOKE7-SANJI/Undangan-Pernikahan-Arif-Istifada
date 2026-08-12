@@ -240,6 +240,32 @@
     video.src = mv.src;
     if (mv.poster) video.poster = mv.poster;
     $("#video-caption").textContent = mv.caption || "";
+    initVideoMusicDucking(video);
+  }
+
+  /* Pause the background music the moment the memory video starts playing,
+     and automatically resume it once the video ends (or is paused). */
+  function initVideoMusicDucking(video) {
+    const audio = $("#bg-audio");
+    const musicBtn = $("#music-toggle");
+    let wasAudioPlaying = false;
+
+    video.addEventListener("play", () => {
+      wasAudioPlaying = !audio.paused;
+      if (wasAudioPlaying) {
+        audio.pause();
+        musicBtn.classList.remove("playing");
+      }
+    });
+
+    const resumeAudio = () => {
+      if (wasAudioPlaying) {
+        audio.play().then(() => musicBtn.classList.add("playing")).catch(() => {});
+        wasAudioPlaying = false;
+      }
+    };
+    video.addEventListener("ended", resumeAudio);
+    video.addEventListener("pause", resumeAudio);
   }
 
   /* ---------------- LIVE STREAMING (only if a link is provided) ---------------- */
@@ -366,7 +392,6 @@
     $("#closing-text").textContent = data.closing.thanksText;
     $("#closing-groom").textContent = data.groom.name;
     $("#closing-bride").textContent = data.bride.name;
-    $("#closing-date").textContent = data.event.dateLabelLong;
   }
 
   function renderFooterAd(data) {
@@ -394,11 +419,14 @@
 
   /* ---------------- SCROLL REVEAL (continuous, replays both ways) ---------------- */
   function initReveal() {
+    // rootMargin creates a stable inner "trigger zone" well within the viewport,
+    // so the transform animation on .reveal (which shifts its own bounding box)
+    // can't re-cross the observer boundary mid-transition and cause jitter.
     const io = new IntersectionObserver((entries) => {
       entries.forEach(en => {
         en.target.classList.toggle("in", en.isIntersecting);
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0, rootMargin: "-12% 0px -12% 0px" });
     $$(".reveal").forEach(el => io.observe(el));
 
     const staggerIO = new IntersectionObserver((entries) => {
@@ -409,7 +437,7 @@
           item.classList.toggle("in", en.isIntersecting);
         });
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0, rootMargin: "-12% 0px -12% 0px" });
     const coupleWrap = $(".couple-wrap");
     if (coupleWrap) staggerIO.observe(coupleWrap);
   }
