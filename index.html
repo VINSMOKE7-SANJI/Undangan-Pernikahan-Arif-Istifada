@@ -16,9 +16,9 @@
 
 <!-- =================== FLOATING BUTTERFLIES (all pages) =================== -->
 <div class="butterfly-layer" aria-hidden="true">
-  <video class="bf bf1" src="assets/video/butterflies.mp4" autoplay muted loop playsinline></video>
-  <video class="bf bf2" src="assets/video/butterflies.mp4" autoplay muted loop playsinline></video>
-  <video class="bf bf3" src="assets/video/butterflies.mp4" autoplay muted loop playsinline></video>
+  <img class="bf bf1" src="assets/images/butterflies.webp" alt="">
+  <img class="bf bf2" src="assets/images/butterflies.webp" alt="">
+  <img class="bf bf3" src="assets/images/butterflies.webp" alt="">
 </div>
 
 <!-- =================== PERSISTENT NAV BUTTON (visible on all pages after opening) =================== -->
@@ -204,6 +204,7 @@
       <div class="form-field">
         <label for="rsvp-name">Nama Anda</label>
         <input type="text" id="rsvp-name" placeholder="Ketik nama Anda" required>
+        <span class="field-hint" id="rsvp-name-hint" hidden>Nama otomatis terisi dari tautan undangan Anda.</span>
       </div>
       <div class="form-field">
         <label for="rsvp-message">Doa &amp; Ucapan</label>
@@ -219,6 +220,11 @@
       </div>
       <button type="submit" class="btn-submit" id="btn-submit">Kirim Ucapan</button>
     </form>
+
+    <div class="rsvp-done" id="rsvp-done" hidden>
+      <div class="rsvp-done-icon">✓</div>
+      <p>Terima kasih, ucapan Anda sudah terkirim dari perangkat ini.</p>
+    </div>
 
     <div class="wishes-list" id="wishes-list"></div>
   </section>
