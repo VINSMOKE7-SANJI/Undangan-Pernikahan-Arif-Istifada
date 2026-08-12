@@ -1,4 +1,4 @@
-# Undangan Pernikahan Digital — Arif & Isda (Tema Islami)
+# Undangan Pernikahan Digital — Fadli & Aisyah (Tema Islami)
 
 Template "mesin" undangan: **satu template HTML**, semua isi undangan
 (nama, tanggal, lokasi, cerita, galeri, rekening) diambil dari
@@ -73,6 +73,26 @@ Edit **`data/wedding.json`** saja — tidak perlu menyentuh HTML/CSS/JS:
 - `memoryVideo.src` / `poster` / `caption` — video kenangan, kosongkan `src` untuk menyembunyikan section ini
 - `liveStream.url` — isi dengan link YouTube Live/Zoom/dll agar section Live Streaming muncul; biarkan kosong (`""`) untuk menyembunyikannya sepenuhnya
 
+## Fitur v7 (update terbaru)
+
+- **Efek slide diganti total** — `scroll-snap` bawaan browser dilepas (perilakunya tidak konsisten di berbagai browser Android, itu penyebab "gak mulus"nya). Sekarang tiap halaman punya animasi masuk yang eksplisit dan ringan: **bergantian muncul dari kiri dan kanan** dengan fade, hanya pakai `opacity`+`translate` (tanpa rotasi 3D berat) supaya tetap mulus di HP kelas bawah.
+- **Ukuran kupu-kupu dikunci** (56–72px) supaya tidak bisa membesar sendiri lagi.
+- **Kupu-kupu diganti dengan gambar watercolor pink yang kamu kirim** (`assets/images/butterfly-pink.png`) — latar putihnya dihapus pakai flood-fill dari tepi gambar (bukan colorkey global), jadi highlight putih *di dalam* sayapnya tetap utuh, tidak ikut transparan, dan tepinya halus tanpa garis putih tersisa. Animasinya sekarang dua lapis: elemen pembungkus mengatur jalur terbang (melayang + rotasi 3D ringan), gambarnya sendiri punya animasi "kepak" halus (scaleX + rotate kecil) supaya tetap terasa hidup walau dari satu pose statis.
+
+## Fitur v6 (update terbaru)
+
+- **Slide antar halaman lebih smooth, getarnya hilang** — akar masalahnya ditemukan: `scroll-snap` sebelumnya dipasang di elemen yang salah (`.app-shell`, yang sebenarnya tidak pernah "scroll" sendiri), jadi snap asli dari browser belum pernah aktif. Sekarang dipasang di elemen yang benar-benar scroll (`html`). Efek animasi masuk tiap section juga dihaluskan (rotasi & pergeseran diperkecil, deteksi scroll pakai zona aman di tengah layar) supaya tidak lagi terjadi "getar" akibat animasi saling tabrakan dengan pendeteksi scroll.
+- **Musik otomatis mati saat Video Kenangan diputar**, dan otomatis lanjut lagi begitu videonya selesai (atau saat video di-pause manual).
+- **Halaman penutup "Terima Kasih" dirapikan** — baris tanggal "Minggu, 20 September 2026" dihapus dari sana karena sudah ada di halaman awal (countdown).
+
+## Fitur v5 (update terbaru)
+
+- **Frame bunga sakura kini ikut "bernapas"** — pakai animasi Ken Burns yang sama seperti foto opening, otomatis berjalan di semua halaman (hero, ayat, mempelai, acara, dst, sampai closing). Ganti gambar di `framePhoto` (field baru di `wedding.json`) kapan pun, animasinya tetap jalan otomatis tanpa perlu sentuh CSS/JS.
+- **Kupu-kupu sekarang benar-benar transparan** — sebelumnya pakai video MP4 + trik CSS `mix-blend-mode`, ternyata trik itu gagal karena struktur susunan lapisan (stacking context) di halaman membuat mode blend tidak "melihat" konten asli di belakangnya, jadi kotak putihnya kebawa. Sekarang diproses ulang dari `Butterfly.mp4` yang sama (bukan file baru) memakai teknik chroma-key ke format WebP beralpha asli (`assets/images/butterflies.webp`) — jadi transparansinya dijamin, tidak bergantung ke trik CSS lagi.
+- **Ucapan dibatasi 1 kali per perangkat** — begitu tamu kirim ucapan, form otomatis diganti pesan "sudah terkirim" dan tidak bisa kirim lagi dari perangkat/browser yang sama. Catatan jujur: ini dibatasi lewat penyimpanan lokal browser (localStorage), bukan sistem terpusat — kalau tamu ganti browser lain atau mode incognito, batasannya reset. Untuk benar-benar 1x per tamu lintas perangkat, perlu backend (di luar cakupan yang diminta sebelumnya).
+- **Nama tamu dari link `?to=` otomatis mengisi & mengunci kolom nama** di form ucapan — tamu tinggal isi doa/ucapannya saja. Kalau linknya tidak membawa `?to=` (link umum), kolom nama tetap bisa diisi manual seperti biasa.
+- **Live streaming** sudah diisi contoh link RCTI+ (`https://www.rctiplus.com/tv/rcti`) di `wedding.json` — section otomatis tampil karena linknya terisi. Kosongkan `liveStream.url` lagi kapan saja untuk menyembunyikannya total.
+
 ## Fitur v4 (update terbaru)
 
 - **Nama mempelai diganti**: pria **Arifiansyah (Arif)**, wanita **Istifadah (Isda)** — sudah diterapkan ke seluruh bagian undangan (opening, hero, kartu mempelai, closing, footer WA, judul tab browser).
@@ -89,7 +109,7 @@ Edit **`data/wedding.json`** saja — tidak perlu menyentuh HTML/CSS/JS:
 
 - **Layar pembuka** memakai foto latar bunga (`assets/images/opening-bg.jpg`) yang kamu kirim. Warna teks disesuaikan jadi emerald tua/emas agar tetap terbaca di atas kartu krem, dengan animasi Ken Burns halus dan fade-up bertahap per elemen.
 - **Galeri** kini pakai foto pasangan dari `contoh_asset.jpg` yang kamu kirim — sudah dibuatkan **10 variasi crop & warna** (dekat, lebar, hangat, dingin, close-up masing-masing) agar terasa beragam, ditata dalam slider dua baris tanpa henti.
-- **Video Kenangan** (`assets/video/kenangan.mp4`, ~56 detik) — video montase Ken Burns dari foto yang sama, lengkap dengan judul "The Wedding Of Arif & Isda" di awal dan nama+tanggal di akhir. **Penting:** ini bukan video asli/rekaman baru — ini slideshow bergerak dari foto contoh yang kamu berikan, bukan video yang dibuat AI dari wajah orang tersebut. Ganti file ini dengan video kenangan asli kalian sebelum undangan disebar.
+- **Video Kenangan** (`assets/video/kenangan.mp4`, ~56 detik) — video montase Ken Burns dari foto yang sama, lengkap dengan judul "The Wedding Of Fadli & Aisyah" di awal dan nama+tanggal di akhir. **Penting:** ini bukan video asli/rekaman baru — ini slideshow bergerak dari foto contoh yang kamu berikan, bukan video yang dibuat AI dari wajah orang tersebut. Ganti file ini dengan video kenangan asli kalian sebelum undangan disebar.
 - **Live Streaming**: section baru yang otomatis **tersembunyi total** kalau `liveStream.url` di `wedding.json` masih kosong. Begitu diisi (link YouTube Live/Zoom/dll), section beserta link navigasinya langsung muncul, dan otomatis membuat embed jika linknya YouTube.
 - **Transisi antar-halaman ala slide**: tiap section pakai `scroll-snap` (halaman "menempel" saat digeser) plus animasi masuk 3D (fade + rotateX + scale) supaya terasa seperti pindah slide, bukan cuma scroll biasa.
 - **Efek parallax** halus pada foto hero saat digeser, plus hover tilt 3D di foto & video.
