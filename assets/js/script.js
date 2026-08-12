@@ -29,8 +29,9 @@
   function getGuestName(defaultName) {
     const params = new URLSearchParams(window.location.search);
     const to = params.get("to");
-    if (!to) return defaultName;
-    return decodeURIComponent(to.replace(/\+/g, " ")).trim() || defaultName;
+    if (!to) return { name: defaultName, isExplicit: false };
+    const decoded = decodeURIComponent(to.replace(/\+/g, " ")).trim();
+    return decoded ? { name: decoded, isExplicit: true } : { name: defaultName, isExplicit: false };
   }
 
   const ICONS = {
@@ -45,6 +46,28 @@
   }
 
   /* ---------------- OPENING ---------------- */
+  /* ---------------- ANIMATED FRAME BACKGROUND (every page, Ken-Burns) ---------------- */
+  function initFrameBackgrounds(data) {
+    const frameUrl = data.framePhoto || "assets/images/frame.jpg";
+    const targets = [$("#hero"), ...$$(".section"), $("#closing")].filter(Boolean);
+
+    targets.forEach((sec) => {
+      if (sec.querySelector(".section-frame-bg")) return; // don't duplicate
+
+      const bg = document.createElement("div");
+      bg.className = "section-frame-bg";
+      bg.style.backgroundImage = `url('${frameUrl}')`;
+
+      const wash = document.createElement("div");
+      wash.className = "section-frame-wash";
+      if (sec.id === "hero") wash.classList.add("wash-hero");
+      if (sec.id === "closing") wash.classList.add("wash-closing");
+
+      sec.prepend(wash);
+      sec.prepend(bg);
+    });
+  }
+
   function renderOpening(data, guestName) {
     $("#op-groom-name").textContent = data.groom.name;
     $("#op-bride-name").textContent = data.bride.name;
@@ -295,12 +318,32 @@
       </div>`).join("");
   }
 
-  function initRSVP() {
+  const SUBMITTED_KEY = "wedding_has_submitted_v1";
+
+  function initRSVP(guestName, isExplicitGuest) {
     renderWishes(loadWishes(), false);
+
     const form = $("#rsvp-form");
+    const doneBox = $("#rsvp-done");
+    const nameInput = $("#rsvp-name");
+    const nameHint = $("#rsvp-name-hint");
+
+    // Auto-fill the guest name from ?to= and lock it so guests only add their message.
+    if (isExplicitGuest) {
+      nameInput.value = guestName;
+      nameInput.readOnly = true;
+      nameHint.hidden = false;
+    }
+
+    // One submission per device: once sent, swap the form for a thank-you state.
+    if (localStorage.getItem(SUBMITTED_KEY)) {
+      form.hidden = true;
+      doneBox.hidden = false;
+    }
+
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      const name = $("#rsvp-name").value.trim();
+      const name = nameInput.value.trim();
       const message = $("#rsvp-message").value.trim();
       const attend = ($$('input[name="attend"]').find(r => r.checked) || {}).value || "Hadir";
       if (!name || !message) return;
@@ -311,14 +354,10 @@
       };
       const list = saveWish(wish);
       renderWishes(list, true);
-      form.reset();
+      localStorage.setItem(SUBMITTED_KEY, "1");
 
-      const btn = $("#btn-submit");
-      const old = btn.textContent;
-      btn.textContent = "Terkirim ✓";
-      btn.classList.add("sent");
-      btn.disabled = true;
-      setTimeout(() => { btn.textContent = old; btn.classList.remove("sent"); btn.disabled = false; }, 1600);
+      form.hidden = true;
+      doneBox.hidden = false;
     });
   }
 
@@ -466,9 +505,10 @@
       return;
     }
 
-    const guestName = getGuestName(data.meta.defaultGuestName);
+    const guest = getGuestName(data.meta.defaultGuestName);
 
-    renderOpening(data, guestName);
+    initFrameBackgrounds(data);
+    renderOpening(data, guest.name);
     renderHero(data);
     renderQuote(data);
     renderCouple(data);
@@ -481,7 +521,7 @@
     renderClosing(data);
     renderFooterAd(data);
     initCountdown(data.event.dateISO);
-    initRSVP();
+    initRSVP(guest.name, guest.isExplicit);
     initOpening(data);
     initMusicToggle();
     initNav();
