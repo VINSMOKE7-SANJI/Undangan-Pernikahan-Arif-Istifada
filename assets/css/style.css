@@ -408,7 +408,6 @@ a{color:inherit; text-decoration:none;}
 .closing-thanks{font-family:var(--font-geo); font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold);}
 .closing-text{margin-top:14px; font-size:14px; line-height:1.8; max-width:320px; color:var(--ink-soft);}
 .closing-names{margin-top:26px; font-family:var(--font-display); font-style:italic; font-size:36px; color:var(--ink);}
-.closing-date{margin-top:10px; font-family:var(--font-geo); font-size:12px; letter-spacing:.15em; color:var(--emerald-800);}
 
 /* ================= FOOTER AD ================= */
 .footer-ad{background:var(--emerald-950); color:var(--cream-dark); text-align:center; padding:22px 24px 26px; font-size:11.5px; letter-spacing:.02em;}
@@ -463,57 +462,45 @@ a{color:inherit; text-decoration:none;}
 }
 
 /* ================= SCROLL-SNAP "SLIDE DECK" PAGING ================= */
-@media (min-width:0px){
-  .app-shell{scroll-snap-type:y proximity;}
-  #hero, #closing, .section{scroll-snap-align:start;}
+/* scroll-snap-type must live on the real scrolling element (the viewport/html),
+   not on .app-shell (which never scrolls itself) — that was the root cause of
+   the "getar" jitter: snapping was never actually active before. */
+html{
+  scroll-behavior:smooth;
+  scroll-snap-type:y proximity;
+  -webkit-overflow-scrolling:touch;
 }
-html{ -webkit-overflow-scrolling:touch; }
+#hero, #closing, .section{scroll-snap-align:start; scroll-snap-stop:always;}
 
-/* ================= 3D MOTION ON SECTION ENTRANCE ================= */
+/* ================= 3D MOTION ON SECTION ENTRANCE (soft, no jitter) ================= */
 .app-shell{perspective:1400px;}
 .reveal{
-  opacity:0; transform:perspective(1200px) rotateX(10deg) translateY(36px) scale(.98);
-  transition:opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1);
+  opacity:0; transform:perspective(1400px) rotateX(4deg) translateY(18px) scale(.99);
+  transition:opacity 1.1s cubic-bezier(.22,1,.36,1), transform 1.1s cubic-bezier(.22,1,.36,1);
   transform-origin:50% 100%;
   will-change:transform, opacity;
 }
-.reveal.in{opacity:1; transform:perspective(1200px) rotateX(0) translateY(0) scale(1);}
+.reveal.in{opacity:1; transform:perspective(1400px) rotateX(0) translateY(0) scale(1);}
 
 /* parallax-ready hero background (JS sets --parallax-y) */
 #hero .section-frame-bg{ background-position:center calc(50% + var(--parallax-y, 0px)); }
 
-/* ================= FLOATING BUTTERFLIES (all pages, continuous 3D motion, pure SVG - no image asset, no background box) ================= */
+/* ================= FLOATING BUTTERFLIES (all pages, continuous 3D motion) ================= */
 .butterfly-layer{
   position:fixed; inset:0; z-index:120; pointer-events:none;
   max-width:var(--card-w); margin:0 auto; overflow:hidden;
   perspective:900px;
-  background:transparent;
 }
 @media (max-width:899px){ .butterfly-layer{max-width:none;} }
 .bf{
-  position:absolute; width:64px; height:52px; display:block;
-  opacity:.95; overflow:visible;
-  background:transparent;
+  position:absolute; width:120px; height:120px; object-fit:contain;
+  opacity:.95;
   will-change:transform;
   filter:drop-shadow(0 6px 10px rgba(60,45,20,.18));
 }
-.bf1{ top:8%;  left:-6%;  width:52px; height:42px; animation:bfFly1 22s ease-in-out infinite; }
-.bf2{ top:52%; right:-8%; width:60px; height:48px; animation:bfFly2 27s ease-in-out infinite; animation-delay:-6s; }
-.bf3{ bottom:6%; left:2%; width:44px; height:36px; animation:bfFly3 19s ease-in-out infinite; animation-delay:-11s; }
-.bf4{ top:26%; right:6%;  width:48px; height:39px; animation:bfFly4 24s ease-in-out infinite; animation-delay:-16s; }
-.bf5{ bottom:22%; left:-4%; width:56px; height:45px; animation:bfFly5 30s ease-in-out infinite; animation-delay:-9s; }
-
-/* wing flap: scales each wing toward the body's central axis, giving a folding flap illusion (SVG has no background, so nothing but the wing shapes ever renders) */
-.bf-wing{ transform-box:view-box; transform-origin:50px 42px; animation:bfFlap .46s ease-in-out infinite alternate; }
-.bf1 .bf-wing{ animation-duration:.42s; }
-.bf2 .bf-wing{ animation-duration:.5s; }
-.bf3 .bf-wing{ animation-duration:.38s; }
-.bf4 .bf-wing{ animation-duration:.46s; }
-.bf5 .bf-wing{ animation-duration:.53s; }
-@keyframes bfFlap{
-  0%{ transform:scaleX(1); }
-  100%{ transform:scaleX(.32); }
-}
+.bf1{ top:8%; left:-6%; width:96px; height:96px; animation:bfFly1 22s ease-in-out infinite; }
+.bf2{ top:52%; right:-8%; width:110px; height:110px; animation:bfFly2 27s ease-in-out infinite; animation-delay:-6s; }
+.bf3{ bottom:6%; left:2%; width:80px; height:80px; animation:bfFly3 19s ease-in-out infinite; animation-delay:-11s; }
 
 @keyframes bfFly1{
   0%  { transform:translate3d(0,0,0) rotateY(0deg) rotateZ(-4deg) scale(1); }
@@ -533,20 +520,6 @@ html{ -webkit-overflow-scrolling:touch; }
   35% { transform:translate3d(35vw,-14vh,20px) rotateY(25deg) rotateZ(2deg) scale(1.06); }
   70% { transform:translate3d(65vw,4vh,0) rotateY(-15deg) rotateZ(-2deg) scale(.94); }
   100%{ transform:translate3d(0,0,0) rotateY(0deg) rotateZ(-2deg) scale(1); }
-}
-@keyframes bfFly4{
-  0%  { transform:translate3d(0,0,0) rotateY(0deg) rotateZ(3deg) scale(1); }
-  28% { transform:translate3d(-40vw,10vh,25px) rotateY(-28deg) rotateZ(-4deg) scale(1.03); }
-  58% { transform:translate3d(-70vw,-8vh,0) rotateY(0deg) rotateZ(3deg) scale(.97); }
-  82% { transform:translate3d(-20vw,-16vh,35px) rotateY(20deg) rotateZ(-3deg) scale(1.02); }
-  100%{ transform:translate3d(0,0,0) rotateY(0deg) rotateZ(3deg) scale(1); }
-}
-@keyframes bfFly5{
-  0%  { transform:translate3d(0,0,0) rotateY(0deg) rotateZ(-3deg) scale(1); }
-  22% { transform:translate3d(45vw,-12vh,20px) rotateY(30deg) rotateZ(4deg) scale(1.04); }
-  50% { transform:translate3d(80vw,8vh,45px) rotateY(0deg) rotateZ(-3deg) scale(.93); }
-  74% { transform:translate3d(50vw,18vh,10px) rotateY(-25deg) rotateZ(3deg) scale(1.05); }
-  100%{ transform:translate3d(0,0,0) rotateY(0deg) rotateZ(-3deg) scale(1); }
 }
 
 /* ================= MOTION BACKGROUND (opening & closing: floating glows + stars) ================= */
