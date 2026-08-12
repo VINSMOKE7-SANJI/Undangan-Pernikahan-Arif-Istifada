@@ -104,9 +104,9 @@
     "caption": "Sepenggal kenangan perjalanan kami — video contoh, ganti dengan video kenangan asli kalian."
   },
   "liveStream": {
-    "url": "",
-    "platform": "YouTube",
-    "note": "Tautan live streaming akan tersedia menjelang hari-H."
+    "url": "https://www.rctiplus.com/tv/rcti",
+    "platform": "RCTI+",
+    "note": "Saksikan momen akad & resepsi kami secara langsung melalui tautan berikut (contoh link, ganti dengan link live streaming asli kalian)."
   },
   "gift": {
     "intro": "Doa restu Anda adalah karunia yang paling berarti bagi kami. Namun jika ingin memberi tanda kasih, kami menyediakan amplop digital berikut.",
@@ -127,5 +127,6 @@
     "thanksTitle": "Terima Kasih",
     "thanksText": "Atas doa dan restu yang telah Bapak/Ibu/Saudara/i berikan, kami ucapkan Jazaakumullahu Khairan.",
     "photo": "assets/images/story-poster.jpg"
-  }
+  },
+  "framePhoto": "assets/images/frame.jpg"
 }
