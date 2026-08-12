@@ -482,22 +482,38 @@ html{ -webkit-overflow-scrolling:touch; }
 /* parallax-ready hero background (JS sets --parallax-y) */
 #hero .section-frame-bg{ background-position:center calc(50% + var(--parallax-y, 0px)); }
 
-/* ================= FLOATING BUTTERFLIES (all pages, continuous 3D motion) ================= */
+/* ================= FLOATING BUTTERFLIES (all pages, continuous 3D motion, pure SVG - no image asset, no background box) ================= */
 .butterfly-layer{
   position:fixed; inset:0; z-index:120; pointer-events:none;
   max-width:var(--card-w); margin:0 auto; overflow:hidden;
   perspective:900px;
+  background:transparent;
 }
 @media (max-width:899px){ .butterfly-layer{max-width:none;} }
 .bf{
-  position:absolute; width:120px; height:120px; object-fit:contain;
-  opacity:.95;
+  position:absolute; width:64px; height:52px; display:block;
+  opacity:.95; overflow:visible;
+  background:transparent;
   will-change:transform;
   filter:drop-shadow(0 6px 10px rgba(60,45,20,.18));
 }
-.bf1{ top:8%; left:-6%; width:96px; height:96px; animation:bfFly1 22s ease-in-out infinite; }
-.bf2{ top:52%; right:-8%; width:110px; height:110px; animation:bfFly2 27s ease-in-out infinite; animation-delay:-6s; }
-.bf3{ bottom:6%; left:2%; width:80px; height:80px; animation:bfFly3 19s ease-in-out infinite; animation-delay:-11s; }
+.bf1{ top:8%;  left:-6%;  width:52px; height:42px; animation:bfFly1 22s ease-in-out infinite; }
+.bf2{ top:52%; right:-8%; width:60px; height:48px; animation:bfFly2 27s ease-in-out infinite; animation-delay:-6s; }
+.bf3{ bottom:6%; left:2%; width:44px; height:36px; animation:bfFly3 19s ease-in-out infinite; animation-delay:-11s; }
+.bf4{ top:26%; right:6%;  width:48px; height:39px; animation:bfFly4 24s ease-in-out infinite; animation-delay:-16s; }
+.bf5{ bottom:22%; left:-4%; width:56px; height:45px; animation:bfFly5 30s ease-in-out infinite; animation-delay:-9s; }
+
+/* wing flap: scales each wing toward the body's central axis, giving a folding flap illusion (SVG has no background, so nothing but the wing shapes ever renders) */
+.bf-wing{ transform-box:view-box; transform-origin:50px 42px; animation:bfFlap .46s ease-in-out infinite alternate; }
+.bf1 .bf-wing{ animation-duration:.42s; }
+.bf2 .bf-wing{ animation-duration:.5s; }
+.bf3 .bf-wing{ animation-duration:.38s; }
+.bf4 .bf-wing{ animation-duration:.46s; }
+.bf5 .bf-wing{ animation-duration:.53s; }
+@keyframes bfFlap{
+  0%{ transform:scaleX(1); }
+  100%{ transform:scaleX(.32); }
+}
 
 @keyframes bfFly1{
   0%  { transform:translate3d(0,0,0) rotateY(0deg) rotateZ(-4deg) scale(1); }
@@ -517,6 +533,20 @@ html{ -webkit-overflow-scrolling:touch; }
   35% { transform:translate3d(35vw,-14vh,20px) rotateY(25deg) rotateZ(2deg) scale(1.06); }
   70% { transform:translate3d(65vw,4vh,0) rotateY(-15deg) rotateZ(-2deg) scale(.94); }
   100%{ transform:translate3d(0,0,0) rotateY(0deg) rotateZ(-2deg) scale(1); }
+}
+@keyframes bfFly4{
+  0%  { transform:translate3d(0,0,0) rotateY(0deg) rotateZ(3deg) scale(1); }
+  28% { transform:translate3d(-40vw,10vh,25px) rotateY(-28deg) rotateZ(-4deg) scale(1.03); }
+  58% { transform:translate3d(-70vw,-8vh,0) rotateY(0deg) rotateZ(3deg) scale(.97); }
+  82% { transform:translate3d(-20vw,-16vh,35px) rotateY(20deg) rotateZ(-3deg) scale(1.02); }
+  100%{ transform:translate3d(0,0,0) rotateY(0deg) rotateZ(3deg) scale(1); }
+}
+@keyframes bfFly5{
+  0%  { transform:translate3d(0,0,0) rotateY(0deg) rotateZ(-3deg) scale(1); }
+  22% { transform:translate3d(45vw,-12vh,20px) rotateY(30deg) rotateZ(4deg) scale(1.04); }
+  50% { transform:translate3d(80vw,8vh,45px) rotateY(0deg) rotateZ(-3deg) scale(.93); }
+  74% { transform:translate3d(50vw,18vh,10px) rotateY(-25deg) rotateZ(3deg) scale(1.05); }
+  100%{ transform:translate3d(0,0,0) rotateY(0deg) rotateZ(-3deg) scale(1); }
 }
 
 /* ================= MOTION BACKGROUND (opening & closing: floating glows + stars) ================= */
